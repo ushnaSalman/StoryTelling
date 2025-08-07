@@ -1,0 +1,45 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+df = pd.read_csv('Housing.csv')
+
+print(df.head())
+
+print(df.describe())
+
+print(df.isnull().sum())
+
+cols = ['price', 'area', 'bedrooms']
+for col in cols:
+  print(f"--- {col.upper()} ---")
+  print("Mean: ", df[col].mean())
+  print("Median: ", df[col].median())
+  print("Mode: ", df[col].mode()[0])
+  print("Variance: ", df[col].var())
+  print("Standard Deviation: ", df[col].var())
+  print("Skewness: ", df[col].skew())
+  print("Kurtiosis: ", df[col].kurt())
+  print("Minimum: ", df[col].min())
+  print("Maximum: ", df[col].max())
+  print()
+
+plt.figure(figsize=(8,5))
+sns.histplot(df['price'], kde=True)
+plt.title('Distribution of House Prices')
+plt.show()
+
+plt.figure(figsize=(8,5))
+sns.boxplot(x=df['area'])
+plt.title('Distribution Of Area of Houses')
+plt.show()
+
+plt.figure(figsize=(8,5))
+sns.boxplot(x='area', y='price', data=df)
+plt.title('Area VS Price')
+plt.show()
+
+
+
+
+
